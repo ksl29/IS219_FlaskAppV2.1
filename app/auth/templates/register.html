@@ -72,35 +72,31 @@
             if (passwordField.value.match(lowerCaseLetters)) {
                 hasLowerCase=1;
                 lowerCase.classList.add('valid');
+                counter++;
             }
             else{
                 hasLowerCase=0;
                 lowerCase.classList.remove('valid');
             }
-            if(hasLowerCase==1){
-                counter++;
-            }
+
 
             if (passwordField.value.match(upperCaseLetters)) {
                 hasUpperCase=1;
+                counter++;
                 upperCase.classList.add('valid');
             }else{
                 hasUpperCase=0;
                 upperCase.classList.remove('valid');
             }
-            if(hasUpperCase==1){
-                counter++;
-            }
+
 
             if (passwordField.value.match(numbers)) {
                 hasNumber=1;
+                counter++;
                 number.classList.add('valid');
             }else{
                 hasNumber=0;
                 number.classList.remove('valid');
-            }
-            if(hasNumber==1){
-                counter++;
             }
 
             if (passwordField.value.length>=passwordMinLength) {

@@ -41,18 +41,18 @@
 
 
     <script>
-        var passwordField = document.getElementById("password");
-        var lowerCase = document.getElementById("lower-case");
-        var upperCase = document.getElementById("upper-case");
-        var number = document.getElementById("number");
-        var pwMinLength = document.getElementById("minLength");
-        var passwordMinLength =6;
-        var hasLowerCase = 0;
-        var hasUpperCase = 0
-        var hasNumber = 0
+        let passwordField = document.getElementById("password");
+        let lowerCase = document.getElementById("lower-case");
+        let upperCase = document.getElementById("upper-case");
+        let number = document.getElementById("number");
+        let pwMinLength = document.getElementById("min-length");
+        let passwordMinLength =6;
+        let hasLowerCase = 0;
+        let hasUpperCase = 0
+        let hasNumber = 0
 
         passwordField.onfocus = function () {
-            var message = document.getElementById("message");
+            let message = document.getElementById("message");
             message.style.display = "block";
             message.style.border = "1px solid";
         }
@@ -61,7 +61,7 @@
         console.log(passwordField.value)
 
         passwordField.onkeyup = function () {
-            var progress_bar = document.getElementById("p-bar");
+            let progress_bar = document.getElementById("p-bar");
             // Validate lowercase letters
             let lowerCaseLetters = /[a-z]/g;
             let upperCaseLetters = /[A-Z]/g;
@@ -71,10 +71,11 @@
 
             if (passwordField.value.match(lowerCaseLetters)) {
                 hasLowerCase=1;
-
+                lowerCase.classList.add('valid');
             }
             else{
                 hasLowerCase=0;
+                lowerCase.classList.remove('valid');
             }
             if(hasLowerCase==1){
                 counter++;
@@ -82,8 +83,10 @@
 
             if (passwordField.value.match(upperCaseLetters)) {
                 hasUpperCase=1;
+                upperCase.classList.add('valid');
             }else{
                 hasUpperCase=0;
+                upperCase.classList.remove('valid');
             }
             if(hasUpperCase==1){
                 counter++;
@@ -91,8 +94,10 @@
 
             if (passwordField.value.match(numbers)) {
                 hasNumber=1;
+                number.classList.add('valid');
             }else{
                 hasNumber=0;
+                number.classList.remove('valid');
             }
             if(hasNumber==1){
                 counter++;
@@ -100,6 +105,9 @@
 
             if (passwordField.value.length>=passwordMinLength) {
                 counter++;
+                pwMinLength.classList.add('valid');
+            }else{
+                pwMinLength.classList.remove('valid');
             }
 
             console.log("counter?",counter)
@@ -109,10 +117,15 @@
             }else if (counter==2){
                  progress_bar.style.width="50%";
             }else if(counter==3){
-                 progress_bar.style.width="75%";
+                progress_bar.style.width="75%";
+                progress_bar.classList.add('bg-primary');
+                progress_bar.classList.remove('bg-success');
             }else if(counter==4){
                  progress_bar.style.width="100%";
+                 progress_bar.classList.add('bg-success');
 
+            }else{
+                progress_bar.style.width="0%";
             }
 
         }
